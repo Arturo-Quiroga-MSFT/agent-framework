@@ -2,6 +2,7 @@
 
 import asyncio
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any
 
 from agent_framework import (
@@ -12,6 +13,11 @@ from agent_framework import (
 )
 from agent_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+env_path = Path(__file__).resolve().parents[4] / ".env"
+load_dotenv(dotenv_path=env_path)
 
 
 def get_time() -> str:

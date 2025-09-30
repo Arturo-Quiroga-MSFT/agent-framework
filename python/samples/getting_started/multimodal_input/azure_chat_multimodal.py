@@ -2,11 +2,17 @@
 
 import asyncio
 import base64
+from pathlib import Path
 
 import requests
 from agent_framework import ChatMessage, DataContent, Role, TextContent
 from agent_framework.azure import AzureOpenAIChatClient
 from azure.identity import AzureCliCredential
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+env_path = Path(__file__).resolve().parents[3] / ".env"
+load_dotenv(dotenv_path=env_path)
 
 
 async def test_image() -> None:

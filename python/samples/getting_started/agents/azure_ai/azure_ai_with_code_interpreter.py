@@ -1,6 +1,7 @@
 # Copyright (c) Microsoft. All rights reserved.
 
 import asyncio
+from pathlib import Path
 
 from agent_framework import AgentRunResponse, ChatResponseUpdate, HostedCodeInterpreterTool
 from agent_framework.azure import AzureAIAgentClient
@@ -8,6 +9,11 @@ from azure.ai.agents.models import (
     RunStepDeltaCodeInterpreterDetailItemObject,
 )
 from azure.identity.aio import AzureCliCredential
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+env_path = Path(__file__).resolve().parents[4] / ".env"
+load_dotenv(dotenv_path=env_path)
 
 
 def print_code_interpreter_inputs(response: AgentRunResponse) -> None:

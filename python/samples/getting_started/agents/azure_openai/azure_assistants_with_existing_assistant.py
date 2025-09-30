@@ -2,14 +2,20 @@
 
 import asyncio
 import os
+from pathlib import Path
 from random import randint
 from typing import Annotated
 
 from agent_framework import ChatAgent
 from agent_framework.azure import AzureOpenAIAssistantsClient
 from azure.identity import AzureCliCredential, get_bearer_token_provider
+from dotenv import load_dotenv
 from openai import AsyncAzureOpenAI
 from pydantic import Field
+
+# Load environment variables from .env file
+env_path = Path(__file__).resolve().parents[4] / ".env"
+load_dotenv(dotenv_path=env_path)
 
 
 def get_weather(

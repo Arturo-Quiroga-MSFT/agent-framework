@@ -1,10 +1,12 @@
 # Copyright (c) Microsoft. All rights reserved.
 
 import asyncio
+from pathlib import Path
 
 from agent_framework import AgentRunResponseUpdate, ChatAgent, ChatResponseUpdate, HostedCodeInterpreterTool
 from agent_framework.azure import AzureOpenAIAssistantsClient
 from azure.identity import AzureCliCredential
+from dotenv import load_dotenv
 from openai.types.beta.threads.runs import (
     CodeInterpreterToolCallDelta,
     RunStepDelta,
@@ -12,6 +14,10 @@ from openai.types.beta.threads.runs import (
     ToolCallDeltaObject,
 )
 from openai.types.beta.threads.runs.code_interpreter_tool_call_delta import CodeInterpreter
+
+# Load environment variables from .env file
+env_path = Path(__file__).resolve().parents[4] / ".env"
+load_dotenv(dotenv_path=env_path)
 
 
 def get_code_interpreter_chunk(chunk: AgentRunResponseUpdate) -> str | None:
