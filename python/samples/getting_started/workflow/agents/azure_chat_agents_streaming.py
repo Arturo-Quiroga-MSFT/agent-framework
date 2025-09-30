@@ -1,10 +1,19 @@
 # Copyright (c) Microsoft. All rights reserved.
 
 import asyncio
+from pathlib import Path
 
 from agent_framework import AgentRunUpdateEvent, WorkflowBuilder, WorkflowOutputEvent
 from agent_framework.azure import AzureOpenAIChatClient
 from azure.identity import AzureCliCredential
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+# Current file: python/samples/getting_started/workflow/agents/azure_chat_agents_streaming.py
+# .env is at: python/.env
+# So we need to go up 4 levels: agents -> workflow -> getting_started -> samples -> python
+env_path = Path(__file__).resolve().parents[4] / ".env"
+load_dotenv(dotenv_path=env_path)
 
 """
 Sample: Agents in a workflow with streaming

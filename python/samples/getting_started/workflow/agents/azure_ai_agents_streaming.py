@@ -3,11 +3,20 @@
 import asyncio
 from collections.abc import Awaitable, Callable
 from contextlib import AsyncExitStack
+from pathlib import Path
 from typing import Any
 
 from agent_framework import AgentRunUpdateEvent, WorkflowBuilder, WorkflowOutputEvent
 from agent_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+# Current file: python/samples/getting_started/workflow/agents/azure_ai_agents_streaming.py
+# .env is at: python/.env
+# So we need to go up 5 levels: agents -> workflow -> getting_started -> samples -> python
+env_path = Path(__file__).resolve().parents[4] / ".env"
+load_dotenv(dotenv_path=env_path)
 
 """
 Sample: Agents in a workflow with streaming
