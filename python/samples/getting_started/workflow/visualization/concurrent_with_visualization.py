@@ -2,6 +2,7 @@
 
 import asyncio
 from dataclasses import dataclass
+from pathlib import Path
 
 from typing_extensions import Never
 
@@ -21,6 +22,14 @@ from agent_framework import (
 )
 from agent_framework.azure import AzureOpenAIChatClient
 from azure.identity import AzureCliCredential
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+# Current file: python/samples/getting_started/workflow/visualization/concurrent_with_visualization.py
+# .env is at: python/.env
+# So we need to go up 4 levels: visualization -> workflow -> getting_started -> samples -> python
+env_path = Path(__file__).resolve().parents[4] / ".env"
+load_dotenv(dotenv_path=env_path)
 
 """
 Sample: Concurrent (Fan-out/Fan-in) with Agents + Visualization
