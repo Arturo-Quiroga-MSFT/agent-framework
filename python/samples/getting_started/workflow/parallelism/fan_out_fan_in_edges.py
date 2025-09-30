@@ -2,6 +2,7 @@
 
 import asyncio
 from dataclasses import dataclass
+from pathlib import Path
 
 from typing_extensions import Never
 
@@ -20,6 +21,14 @@ from agent_framework import (  # Core chat primitives to build LLM requests
 )
 from agent_framework.azure import AzureOpenAIChatClient  # Client wrapper for Azure OpenAI chat models
 from azure.identity import AzureCliCredential  # Uses your az CLI login for credentials
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+# Current file: python/samples/getting_started/workflow/parallelism/fan_out_fan_in_edges.py
+# .env is at: python/.env
+# So we need to go up 4 levels: parallelism -> workflow -> getting_started -> samples -> python
+env_path = Path(__file__).resolve().parents[4] / ".env"
+load_dotenv(dotenv_path=env_path)
 
 """
 Sample: Concurrent fan out and fan in with three domain agents

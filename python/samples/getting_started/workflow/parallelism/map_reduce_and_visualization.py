@@ -300,7 +300,9 @@ async def main():
         print("Tip: Install 'viz' extra to export workflow visualization: pip install agent-framework[viz]")
 
     # Step 3: Open the text file and read its content.
-    async with aiofiles.open(os.path.join(DIR, "resources", "long_text.txt"), "r") as f:
+    # The resources directory is in the parent workflow directory
+    resources_path = os.path.join(os.path.dirname(DIR), "resources", "long_text.txt")
+    async with aiofiles.open(resources_path, "r") as f:
         raw_text = await f.read()
 
     # Step 4: Run the workflow with the raw text as input.
