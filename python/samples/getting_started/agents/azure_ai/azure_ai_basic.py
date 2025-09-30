@@ -1,12 +1,22 @@
 # Copyright (c) Microsoft. All rights reserved.
 
 import asyncio
+from pathlib import Path
 from random import randint
 from typing import Annotated
 
 from agent_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential
+from dotenv import load_dotenv
 from pydantic import Field
+
+# Load environment variables from .env file
+# Look for .env in the python directory
+# __file__ is in: python/samples/getting_started/agents/azure_ai/azure_ai_basic.py
+# .env is in: python/.env
+# So we need to go up 4 levels: azure_ai -> agents -> getting_started -> samples -> python
+env_path = Path(__file__).resolve().parents[4] / ".env"
+load_dotenv(dotenv_path=env_path)
 
 
 def get_weather(
