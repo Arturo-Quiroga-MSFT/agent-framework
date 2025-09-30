@@ -1,28 +1,25 @@
 # Copyright (c) Microsoft. All rights reserved.
 
 import asyncio
+import importlib.util
 from datetime import datetime, timezone
 from pathlib import Path
-from random import randint
-from typing import Annotated
 
 from agent_framework import ChatAgent
 from agent_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential
 from dotenv import load_dotenv
-from pydantic import Field
 
 # Load environment variables from .env file
 env_path = Path(__file__).resolve().parents[4] / ".env"
 load_dotenv(dotenv_path=env_path)
 
-
-def get_weather(
-    location: Annotated[str, Field(description="The location to get the weather for.")],
-) -> str:
-    """Get the weather for a given location."""
-    conditions = ["sunny", "cloudy", "rainy", "stormy"]
-    return f"The weather in {location} is {conditions[randint(0, 3)]} with a high of {randint(10, 30)}°C."
+# Import weather_utils from the azure_ai_real_weather directory (sibling directory)
+weather_utils_path = Path(__file__).resolve().parent.parent / "azure_ai_real_weather" / "weather_utils.py"
+spec = importlib.util.spec_from_file_location("weather_utils", weather_utils_path)
+weather_utils = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(weather_utils)
+get_real_weather = weather_utils.get_real_weather
 
 
 def get_time() -> str:
@@ -44,7 +41,7 @@ async def tools_on_agent_level() -> None:
         ChatAgent(
             chat_client=AzureAIAgentClient(async_credential=credential),
             instructions="You are a helpful assistant that can provide weather and time information.",
-            tools=[get_weather, get_time],  # Tools defined at agent creation
+            tools=[get_real_weather, get_time],  # Tools defined at agent creation
         ) as agent,
     ):
         # First query - agent can use weather tool
@@ -84,7 +81,7 @@ async def tools_on_run_level() -> None:
         # First query with weather tool
         query1 = "What's the weather like in Seattle?"
         print(f"User: {query1}")
-        result1 = await agent.run(query1, tools=[get_weather])  # Tool passed to run method
+        result1 = await agent.run(query1, tools=[get_real_weather])  # Tool passed to run method
         print(f"Agent: {result1}\n")
 
         # Second query with time tool
@@ -96,7 +93,7 @@ async def tools_on_run_level() -> None:
         # Third query with multiple tools
         query3 = "What's the weather in Chicago and what's the current UTC time?"
         print(f"User: {query3}")
-        result3 = await agent.run(query3, tools=[get_weather, get_time])  # Multiple tools
+        result3 = await agent.run(query3, tools=[get_real_weather, get_time])  # Multiple tools
         print(f"Agent: {result3}\n")
 
 
@@ -112,7 +109,7 @@ async def mixed_tools_example() -> None:
         ChatAgent(
             chat_client=AzureAIAgentClient(async_credential=credential),
             instructions="You are a comprehensive assistant that can help with various information requests.",
-            tools=[get_weather],  # Base tool available for all queries
+            tools=[get_real_weather],  # Base tool available for all queries
         ) as agent,
     ):
         # Query using both agent tool and additional run-method tools

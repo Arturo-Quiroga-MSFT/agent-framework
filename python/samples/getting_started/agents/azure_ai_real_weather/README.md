@@ -33,9 +33,10 @@ uv pip install aiohttp
   - `get_real_weather()`: Get basic current weather
   - `get_real_weather_detailed()`: Get detailed weather with more metrics
 
-- **Example files** (to be created):
-  - `azure_ai_basic_real_weather.py`: Basic example with real weather
-  - `azure_ai_streaming_real_weather.py`: Streaming example with real weather
+- **Example Files**:
+  - `azure_ai_basic_real_weather.py`: Basic example with real weather (non-streaming and streaming)
+  - `azure_ai_detailed_real_weather.py`: Detailed weather analysis and comparison examples
+  - `azure_ai_multiturn_real_weather.py`: Multi-turn conversations and advanced use cases
 
 ## Usage Example
 
@@ -51,6 +52,37 @@ async with AzureAIAgentClient(async_credential=credential).create_agent(
     result = await agent.run("What's the weather like in Seattle?")
     print(result)
 ```
+
+## Running the Examples
+
+```bash
+# Make sure you're using the correct virtual environment
+source /Users/arturoquiroga/GITHUB/agent-framework/python/.venv/bin/activate
+
+# Run the basic example
+python azure_ai_basic_real_weather.py
+
+# Run the detailed weather example
+python azure_ai_detailed_real_weather.py
+
+# Run the multi-turn conversation example
+python azure_ai_multiturn_real_weather.py
+```
+
+## Example Queries You Can Try
+
+**Basic:**
+- "What's the weather in Paris?"
+- "Compare the weather in New York and Los Angeles"
+- "Is it raining in London?"
+
+**Detailed:**
+- "Give me a detailed weather report for Tokyo"
+- "What's the visibility and wind speed in San Francisco?"
+
+**Multi-turn:**
+- "What's the weather in Barcelona?" → "How does that compare to Madrid?"
+- "I want to go hiking. Check the weather in Denver." → "What should I pack?"
 
 ## API Limits (Free Tier)
 

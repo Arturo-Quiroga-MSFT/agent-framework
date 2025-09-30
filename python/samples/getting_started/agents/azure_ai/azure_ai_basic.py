@@ -1,14 +1,12 @@
 # Copyright (c) Microsoft. All rights reserved.
 
 import asyncio
+import importlib.util
 from pathlib import Path
-from random import randint
-from typing import Annotated
 
 from agent_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential
 from dotenv import load_dotenv
-from pydantic import Field
 
 # Load environment variables from .env file
 # Look for .env in the python directory
@@ -18,13 +16,12 @@ from pydantic import Field
 env_path = Path(__file__).resolve().parents[4] / ".env"
 load_dotenv(dotenv_path=env_path)
 
-
-def get_weather(
-    location: Annotated[str, Field(description="The location to get the weather for.")],
-) -> str:
-    """Get the weather for a given location."""
-    conditions = ["sunny", "cloudy", "rainy", "stormy"]
-    return f"The weather in {location} is {conditions[randint(0, 3)]} with a high of {randint(10, 30)}°C."
+# Import weather_utils from the azure_ai_real_weather directory (sibling directory)
+weather_utils_path = Path(__file__).resolve().parent.parent / "azure_ai_real_weather" / "weather_utils.py"
+spec = importlib.util.spec_from_file_location("weather_utils", weather_utils_path)
+weather_utils = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(weather_utils)
+get_real_weather = weather_utils.get_real_weather
 
 
 async def non_streaming_example() -> None:
@@ -39,11 +36,11 @@ async def non_streaming_example() -> None:
         AzureCliCredential() as credential,
         AzureAIAgentClient(async_credential=credential).create_agent(
             name="WeatherAgent",
-            instructions="You are a helpful weather agent.",
-            tools=get_weather,
+            instructions="You are a helpful weather agent that provides real-time weather information.",
+            tools=get_real_weather,
         ) as agent,
     ):
-        query = "What's the weather like in Seattle?"
+        query = "What's the weather like in Toronto?"
         print(f"User: {query}")
         result = await agent.run(query)
         print(f"Agent: {result}\n")
@@ -61,11 +58,11 @@ async def streaming_example() -> None:
         AzureCliCredential() as credential,
         AzureAIAgentClient(async_credential=credential).create_agent(
             name="WeatherAgent",
-            instructions="You are a helpful weather agent.",
-            tools=get_weather,
+            instructions="You are a helpful weather agent that provides real-time weather information.",
+            tools=get_real_weather,
         ) as agent,
     ):
-        query = "What's the weather like in Portland?"
+        query = "What's the weather like in Mexico City?"
         print(f"User: {query}")
         print("Agent: ", end="", flush=True)
         async for chunk in agent.run_stream(query):
@@ -75,7 +72,7 @@ async def streaming_example() -> None:
 
 
 async def main() -> None:
-    print("=== Basic Azure AI Chat Client Agent Example ===")
+    print("=== Basic Azure AI Chat Client Agent Example with REAL Weather Data ===")
 
     await non_streaming_example()
     await streaming_example()
