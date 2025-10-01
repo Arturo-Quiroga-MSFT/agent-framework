@@ -194,12 +194,12 @@ def main():
         prs,
         "Architecture Components",
         [
-            "1. Chat Agents - Single-purpose AI agents with tools",
-            "2. Agent Executors - Wrap agents for workflow integration",
-            "3. Workflow Builder - Graph-based orchestration",
-            "4. Chat Clients - LLM provider abstractions",
-            "5. Tools & Plugins - Extensible function calling",
-            "6. Runtime - Execution environment (local or distributed)"
+            "1. Chat Agents - Conversational AI agents with instructions, tools, and state management for focused tasks",
+            "2. Agent Executors - Wrapper layer that integrates agents into workflows, enabling coordination between multiple agents",
+            "3. Workflow Builder - Fluent API for creating graph-based orchestrations with edges, streaming, and checkpointing",
+            "4. Chat Clients - Provider-agnostic abstractions supporting OpenAI, Azure OpenAI, and Azure AI Foundry",
+            "5. Tools & Plugins - Type-safe function definitions with automatic schema generation for LLM invocation",
+            "6. Runtime - Flexible execution supporting both in-process agents and distributed multi-agent systems"
         ]
     )
     
