@@ -1,252 +1,166 @@
-# Microsoft Agent Framework
+![Microsoft Agent Framework](docs/assets/readme-banner.png)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![.NET](https://img.shields.io/badge/.NET-8.0+-purple.svg)](https://dotnet.microsoft.com/)
+# Welcome to Microsoft Agent Framework!
 
-Build, orchestrate, and deploy AI agents and multi-agent systems with the Microsoft Agent Framework - a flexible, production-ready framework for creating intelligent agents with Python and .NET.
+[![Microsoft Azure AI Foundry Discord](https://dcbadge.limes.pink/api/server/b5zjErwbQM?style=flat)](https://discord.gg/b5zjErwbQM)
+[![MS Learn Documentation](https://img.shields.io/badge/MS%20Learn-Documentation-blue)](https://learn.microsoft.com/en-us/agent-framework/)
+[![PyPI](https://img.shields.io/pypi/v/agent-framework)](https://pypi.org/project/agent-framework/)
+[![NuGet](https://img.shields.io/nuget/v/Microsoft.Agents.AI)](https://www.nuget.org/profiles/MicrosoftAgentFramework/)
 
-## 🌟 What's New
+Welcome to Microsoft's comprehensive multi-language framework for building, orchestrating, and deploying AI agents with support for both .NET and Python implementations. This framework provides everything from simple chat agents to complex multi-agent workflows with graph-based orchestration.
 
-### 📓 Interactive Jupyter Notebook Demos
-Comprehensive interactive demonstrations showcasing the Microsoft Agent Framework through executable Jupyter notebooks:
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=AAgdMhftj8w" title="Watch the full Agent Framework introduction (30 min)">
+    <img src="https://img.youtube.com/vi/AAgdMhftj8w/hqdefault.jpg"
+         alt="Watch the full Agent Framework introduction (30 min)" width="480">
+  </a>
+</p>
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=AAgdMhftj8w">
+    Watch the full Agent Framework introduction (30 min)
+  </a>
+</p>
 
-- **Azure AI Foundry Agent Demo** - Persistent agents with code interpreter and function tools
-- **Azure OpenAI Chat Completion Agent Demo** - Lightweight agents with advanced function calling
-- **Concurrent Workflow Demo** - Multi-agent orchestration with real-time visualization
-- **Workflow Tutorial** - Foundational concepts and patterns
+## 📋 Getting Started
 
-**Created by:** Arturo Quiroga, Senior Cloud Solutions Architect (Partners), Microsoft Americas
+### 📦 Installation
 
-👉 **[Get Started with Notebooks](python/samples/getting_started/agents/Notebooks/)**
-
-## ✨ Key Features
-
-- **🤖 Flexible Agent Framework** - Build, orchestrate, and deploy AI agents and multi-agent systems
-- **🔄 Multi-Agent Orchestration** - Group chat, sequential, concurrent, and handoff patterns
-- **🔌 Plugin Ecosystem** - Extend with native functions, OpenAPI, Model Context Protocol (MCP), and more
-- **🧠 LLM Support** - OpenAI, Azure OpenAI, Azure AI Foundry, Anthropic, and more
-- **⚡ Runtime Support** - In-process and distributed agent execution
-- **🎭 Multimodal** - Text, vision, audio, and function calling
-- **🌍 Cross-Platform** - Python and .NET implementations with feature parity
-- **📊 Observability** - Built-in OpenTelemetry instrumentation and tracing
-- **🔐 Enterprise-Ready** - Azure integration, security, and compliance features
-
-## 🚀 Quick Start
-
-### Python
+Python
 
 ```bash
-# Install base framework
-pip install agent-framework
-
-# Or install with Azure AI support
-pip install agent-framework[azure-ai]
-
-# Or install everything
-pip install agent-framework[all]
+pip install agent-framework --pre
+# This will install all sub-packages, see `python/packages` for individual packages.
+# It may take a minute on first install on Windows.
 ```
 
-**Create your first agent in 3 lines:**
+.NET
+
+```bash
+dotnet add package Microsoft.Agents.AI
+```
+
+### 📚 Documentation
+
+- **[Overview](https://learn.microsoft.com/agent-framework/overview/agent-framework-overview)** - High level overview of the framework
+- **[Quick Start](https://learn.microsoft.com/agent-framework/tutorials/quick-start)** - Get started with a simple agent
+- **[Tutorials](https://learn.microsoft.com/agent-framework/tutorials/overview)** - Step by step tutorials
+- **[User Guide](https://learn.microsoft.com/en-us/agent-framework/user-guide/overview)** - In-depth user guide for building agents and workflows
+- **[Migration from Semantic Kernel](https://learn.microsoft.com/en-us/agent-framework/migration-guide/from-semantic-kernel)** - Guide to migrate from Semantic Kernel
+- **[Migration from AutoGen](https://learn.microsoft.com/en-us/agent-framework/migration-guide/from-autogen)** - Guide to migrate from AutoGen
+
+### ✨ **Highlights**
+
+- **Graph-based Workflows**: Connect agents and deterministic functions using data flows with streaming, checkpointing, human-in-the-loop, and time-travel capabilities
+  - [Python workflows](./python/samples/getting_started/workflows/) | [.NET workflows](./dotnet/samples/GettingStarted/Workflows/)
+- **AF Labs**: Experimental packages for cutting-edge features including benchmarking, reinforcement learning, and research initiatives
+  - [Labs directory](./python/packages/lab/)
+- **DevUI**: Interactive developer UI for agent development, testing, and debugging workflows
+  - [DevUI package](./python/packages/devui/)
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=mOAaGY4WPvc">
+    <img src="https://img.youtube.com/vi/mOAaGY4WPvc/hqdefault.jpg" alt="See the DevUI in action" width="480">
+  </a>
+</p>
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=mOAaGY4WPvc">
+    See the DevUI in action (1 min)
+  </a>
+</p>
+
+- **Python and C#/.NET Support**: Full framework support for both Python and C#/.NET implementations with consistent APIs
+  - [Python packages](./python/packages/) | [.NET source](./dotnet/src/)
+- **Observability**: Built-in OpenTelemetry integration for distributed tracing, monitoring, and debugging
+  - [Python observability](./python/samples/getting_started/observability/) | [.NET telemetry](./dotnet/samples/GettingStarted/AgentOpenTelemetry/)
+- **Multiple Agent Provider Support**: Support for various LLM providers with more being added continuously
+  - [Python examples](./python/samples/getting_started/agents/) | [.NET examples](./dotnet/samples/GettingStarted/AgentProviders/)
+- **Middleware**: Flexible middleware system for request/response processing, exception handling, and custom pipelines
+  - [Python middleware](./python/samples/getting_started/middleware/) | [.NET middleware](./dotnet/samples/GettingStarted/Agents/Agent_Step14_Middleware/)
+
+### 💬 **We want your feedback!**
+
+- For bugs, please file a [GitHub issue](https://github.com/microsoft/agent-framework/issues).
+
+## Quickstart
+
+### Basic Agent - Python
+
+Create a simple Azure Responses Agent that writes a haiku about the Microsoft Agent Framework
 
 ```python
+# pip install agent-framework --pre
+# Use `az login` to authenticate with Azure CLI
+import os
 import asyncio
-from agent_framework import ChatAgent
-from agent_framework.openai import OpenAIChatClient
+from agent_framework.azure import AzureOpenAIResponsesClient
+from azure.identity import AzureCliCredential
+
 
 async def main():
-    agent = ChatAgent(
-        chat_client=OpenAIChatClient(),
-        instructions="You are a helpful assistant."
+    # Initialize a chat agent with Azure OpenAI Responses
+    # the endpoint, deployment name, and api version can be set via environment variables
+    # or they can be passed in directly to the AzureOpenAIResponsesClient constructor
+    agent = AzureOpenAIResponsesClient(
+        # endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+        # deployment_name=os.environ["AZURE_OPENAI_RESPONSES_DEPLOYMENT_NAME"],
+        # api_version=os.environ["AZURE_OPENAI_API_VERSION"],
+        # api_key=os.environ["AZURE_OPENAI_API_KEY"],  # Optional if using AzureCliCredential
+        credential=AzureCliCredential(), # Optional, if using api_key
+    ).create_agent(
+        name="HaikuBot",
+        instructions="You are an upbeat assistant that writes beautifully.",
     )
-    result = await agent.run("What are the three laws of robotics?")
-    print(result.text)
 
-asyncio.run(main())
+    print(await agent.run("Write a haiku about Microsoft Agent Framework."))
+
+if __name__ == "__main__":
+    asyncio.run(main())
 ```
 
-### .NET
+### Basic Agent - .NET
 
-```bash
-dotnet add package Microsoft.Agents.AI --prerelease
-```
-
-**Create your first agent:**
-
-```csharp
+```c#
+// dotnet add package Microsoft.Agents.AI.OpenAI --prerelease
+// dotnet add package Azure.AI.OpenAI
+// dotnet add package Azure.Identity
+// Use `az login` to authenticate with Azure CLI
+using System;
+using Azure.AI.OpenAI;
+using Azure.Identity;
 using Microsoft.Agents.AI;
 using OpenAI;
 
-var client = new OpenAIClient(Environment.GetEnvironmentVariable("OPENAI_API_KEY"));
-var chatClient = client.GetChatClient("gpt-4o-mini");
+var endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")!;
+var deploymentName = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT_NAME")!;
 
-var agent = chatClient.CreateAIAgent(
-    instructions: "You are a helpful assistant.",
-    name: "MyAgent"
-);
+var agent = new AzureOpenAIClient(new Uri(endpoint), new AzureCliCredential())
+    .GetOpenAIResponseClient(deploymentName)
+    .CreateAIAgent(name: "HaikuBot", instructions: "You are an upbeat assistant that writes beautifully.");
 
-var result = await agent.RunAsync("What are the three laws of robotics?");
-Console.WriteLine(result);
+Console.WriteLine(await agent.RunAsync("Write a haiku about Microsoft Agent Framework."));
 ```
 
-## 📚 Documentation & Learning Paths
+## More Examples & Samples
 
-### For Beginners
-1. 🎓 **[Interactive Jupyter Notebooks](python/samples/getting_started/agents/Notebooks/)** - Best place to start!
-2. 📖 **[Python Getting Started Guide](python/README.md)** - Step-by-step introduction
-3. 📖 **[.NET Getting Started Guide](dotnet/README.md)** - .NET specific quickstart
+### Python
 
-### Core Concepts
-- **[Agent Types](python/samples/getting_started/agents/)** - Azure AI, Azure OpenAI, OpenAI, Anthropic, Custom
-- **[Function Tools](python/samples/getting_started/agents/azure_openai/)** - Extend agents with custom functions
-- **[Workflows](python/samples/getting_started/workflow/)** - Orchestrate multi-agent systems
-- **[Model Context Protocol (MCP)](python/samples/getting_started/agents/azure_ai/)** - Integrate MCP servers
+- [Getting Started with Agents](./python/samples/getting_started/agents): basic agent creation and tool usage
+- [Chat Client Examples](./python/samples/getting_started/chat_client): direct chat client usage patterns
+- [Getting Started with Workflows](./python/samples/getting_started/workflows): basic workflow creation and integration with agents
 
-### Advanced Topics
-- **[Multi-Agent Patterns](python/samples/getting_started/workflow/)** - Sequential, concurrent, handoffs
-- **[Observability & Tracing](python/samples/getting_started/observability/)** - OpenTelemetry integration
-- **[Custom Agents](python/samples/getting_started/agents/custom/)** - Build your own agent implementations
-- **[Workflow Samples](workflow-samples/)** - Real-world workflow examples
+### .NET
 
-## 🏗️ Architecture
+- [Getting Started with Agents](./dotnet/samples/GettingStarted/Agents): basic agent creation and tool usage
+- [Agent Provider Samples](./dotnet/samples/GettingStarted/AgentProviders): samples showing different agent providers
+- [Workflow Samples](./dotnet/samples/GettingStarted/Workflows): advanced multi-agent patterns and workflow orchestration
 
-The Microsoft Agent Framework provides a unified programming model across Python and .NET:
+## Contributor Resources
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Your Application                          │
-├─────────────────────────────────────────────────────────────┤
-│              Microsoft Agent Framework                       │
-│  ┌─────────────┐  ┌──────────────┐  ┌─────────────────┐   │
-│  │   Agents    │  │  Workflows   │  │  Observability  │   │
-│  │  - Chat     │  │  - Sequential│  │  - OpenTelemetry│   │
-│  │  - Custom   │  │  - Concurrent│  │  - Tracing      │   │
-│  │  - Multi    │  │  - Handoffs  │  │  - Metrics      │   │
-│  └─────────────┘  └──────────────┘  └─────────────────┘   │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │              Chat Clients & Tools                    │   │
-│  │  - Function Tools  - Code Interpreter  - MCP  - API │   │
-│  └─────────────────────────────────────────────────────┘   │
-├─────────────────────────────────────────────────────────────┤
-│                    LLM Providers                             │
-│  Azure AI │ Azure OpenAI │ OpenAI │ Anthropic │ Custom     │
-└─────────────────────────────────────────────────────────────┘
-```
+- [Contributing Guide](./CONTRIBUTING.md)
+- [Python Development Guide](./python/DEV_SETUP.md)
+- [Design Documents](./docs/design)
+- [Architectural Decision Records](./docs/decisions)
 
-## 📂 Repository Structure
+## Important Notes
 
-```
-agent-framework/
-├── python/                          # Python implementation
-│   ├── packages/                    # Python packages
-│   │   ├── main/                   # Core agent-framework package
-│   │   ├── azure-ai/               # Azure AI integration
-│   │   ├── copilotstudio/          # Copilot Studio integration
-│   │   └── ...                     # Additional integrations
-│   └── samples/                     # Python examples
-│       └── getting_started/
-│           ├── agents/
-│           │   └── Notebooks/      # 🌟 NEW! Interactive demos
-│           ├── workflow/           # Workflow examples
-│           └── observability/      # Tracing examples
-├── dotnet/                          # .NET implementation
-│   ├── src/                        # .NET source code
-│   └── samples/                    # .NET examples
-├── workflow-samples/                # YAML workflow definitions
-├── docs/                           # Documentation & ADRs
-└── presentations/                   # Presentation materials
-```
-
-## 🎯 Use Cases
-
-### Single Agent Scenarios
-- **Conversational AI** - Chatbots, virtual assistants, customer support
-- **Code Generation** - Development assistants, code review bots
-- **Data Analysis** - Query natural language, generate insights
-- **Content Creation** - Writing, summarization, translation
-
-### Multi-Agent Scenarios
-- **Research & Analysis** - Parallel research with aggregation
-- **Workflow Automation** - Sequential task execution with handoffs
-- **Expert Systems** - Specialized agents for different domains
-- **Quality Assurance** - Multi-stage review and validation
-
-## 🔧 Supported Platforms & Integrations
-
-### LLM Providers
-- ✅ Azure OpenAI Service
-- ✅ Azure AI Foundry (Persistent Agents)
-- ✅ OpenAI
-- ✅ Anthropic
-- ✅ Custom providers via chat client interface
-
-### Tools & Extensions
-- ✅ Function Tools (custom Python/C# functions)
-- ✅ Code Interpreter (Python execution)
-- ✅ File Search & RAG
-- ✅ Web Search (Bing)
-- ✅ Model Context Protocol (MCP)
-- ✅ OpenAPI/REST APIs
-
-### Platforms
-- **Python:** 3.10, 3.11, 3.12, 3.13
-- **.NET:** 8.0+
-- **OS:** Windows, macOS, Linux
-
-## 🤝 Contributing
-
-We welcome contributions! Please see:
-- [Contributing Guidelines](CONTRIBUTING.md)
-- [Code of Conduct](CODE_OF_CONDUCT.md)
-- [Documentation Contributing Guide](docs/CONTRIBUTING_TO_DOCS.md)
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Support
-
-- **Documentation:** [Microsoft Learn - Agent Framework](https://learn.microsoft.com/en-us/agent-framework/)
-- **Issues:** [GitHub Issues](https://github.com/microsoft/agent-framework/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/microsoft/agent-framework/discussions)
-- **Support:** See [SUPPORT.md](SUPPORT.md)
-- **FAQ:** See [docs/FAQS.md](docs/FAQS.md)
-
-## 🌟 Featured Examples
-
-### Interactive Notebooks (Python)
-- [Azure AI Foundry Agent](python/samples/getting_started/agents/Notebooks/azure_ai_foundry_agent_demo.ipynb) - 9 complete examples
-- [Azure OpenAI Chat Completion](python/samples/getting_started/agents/Notebooks/azure_openai_chat_completion_agent_demo.ipynb) - 11 comprehensive examples
-- [Concurrent Workflows](python/samples/getting_started/agents/Notebooks/concurrent_workflow_demo.ipynb) - Multi-agent orchestration with visualization
-
-### Code Samples (Python)
-- [Basic Agent Creation](python/samples/getting_started/agents/azure_ai/azure_ai_basic.py)
-- [Function Tools](python/samples/getting_started/agents/azure_openai/azure_openai_with_function_tools.py)
-- [Code Interpreter](python/samples/getting_started/agents/azure_ai/azure_ai_with_code_interpreter.py)
-- [MCP Integration](python/samples/getting_started/agents/azure_ai/azure_ai_with_hosted_mcp.py)
-- [Multi-Agent Workflows](python/samples/getting_started/workflow/)
-
-### Code Samples (.NET)
-- [Getting Started](dotnet/samples/GettingStarted/)
-- [Agent-to-Agent Communication](dotnet/samples/A2AClientServer/)
-- [Web Chat Integration](dotnet/samples/AgentWebChat/)
-
-## 📊 Project Status
-
-This project is under active development. We release regular updates with new features, improvements, and bug fixes.
-
-- **Current Version:** 0.1.0-beta1
-- **Latest Release:** Check [Releases](https://github.com/microsoft/agent-framework/releases)
-- **Roadmap:** See [GitHub Projects](https://github.com/microsoft/agent-framework/projects)
-
-## 🙏 Acknowledgments
-
-Special thanks to all contributors and the open-source community for making this project possible.
-
-**Interactive Notebook Demos:** Created by Arturo Quiroga, Senior Cloud Solutions Architect (Partners), Microsoft Americas
-
----
-
-**© Microsoft Corporation. All rights reserved.**
-
-For more information about Microsoft's AI initiatives, visit [Microsoft AI](https://www.microsoft.com/ai).
+If you use the Microsoft Agent Framework to build applications that operate with third-party servers or agents, you do so at your own risk. We recommend reviewing all data being shared with third-party servers or agents and being cognizant of third-party practices for retention and location of data. It is your responsibility to manage whether your data will flow outside of your organization's Azure compliance and geographic boundaries and any related implications.
